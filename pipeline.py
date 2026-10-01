@@ -29,7 +29,7 @@ NumericData = ['age', 'salary', 'balance', 'day', 'duration', 'campaign', 'pdays
 OrdinalData = ['education']
 
 # Categorical features with no inherent order, to be one-hot encoded
-NominalData = ['eligible', 'job', 'marital', 'marital-education', 'default', 'housing', 'loan', 'contact', 'month', 'poutcome', 'y', 'response']
+NominalData = ['eligible', 'job', 'marital', 'default', 'housing', 'loan', 'contact', 'month', 'poutcome', 'y']
 
 
 # ==========================================
@@ -83,8 +83,8 @@ model = Pipeline(steps=[
 le = LabelEncoder()
 Y = le.fit_transform(df['targeted'])
 
-# Separate input features by dropping the target column
-X = df.drop(columns=['targeted'])
+# Separate input features by dropping target and response columns
+X = df.drop(columns=['targeted', 'response'])
 
 # Split data: 80% training set, 20% testing set
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
